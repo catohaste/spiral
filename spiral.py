@@ -2,6 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
 import matplotlib.animation as animation
+from matplotlib import rc
 
 # define spiral
 #	has 4 prongs
@@ -9,6 +10,8 @@ import matplotlib.animation as animation
 #			start_position
 #			direction
 #			length
+
+rc('animation', html='html5')
 
 animation_duration = 3000
 
@@ -22,13 +25,13 @@ prongs_list = []
 points_list = []
 centre_of_mass_list = []
 
-# fig = plt.figure(figsize=(12,4))
-fig = plt.figure(figsize=(6,4))
+fig = plt.figure(figsize=(12,4))
+# fig = plt.figure(figsize=(6,4))
 axs = {}
 colors = ['C0', 'C1', 'C2', 'C3']
 for spiral in range(spiralN):
-    axs[spiral] = fig.add_subplot(2,2,spiral+1)
-    # axs[spiral] = fig.add_subplot(1,spiralN,spiral+1)
+    # axs[spiral] = fig.add_subplot(2,2,spiral+1)
+    axs[spiral] = fig.add_subplot(1,spiralN,spiral+1)
 
     for idx in range(prongN):
         line, = axs[spiral].plot([],[], color = colors[idx])
@@ -82,8 +85,9 @@ ani = FuncAnimation(fig, update, frames=np.linspace(0,2*np.pi,num_points_in_ring
 
 plt.show()
 
-Writer = animation.writers['ffmpeg']
-writer = Writer(fps=24)
+# Writer = animation.writers['ffmpeg']
+# writer = Writer(fps=24)
+# ani.save('animation.mp4', writer=writer)
 
-ani.save('animation.mp4', writer=writer)
+ani.save('animation.gif', writer='imagemagick', fps=24)
 
