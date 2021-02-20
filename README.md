@@ -1,1 +1,1 @@
-Demonstration of spiral sculpture
+![spiral animation](https://github.com/catohaste/spiral/blob/master/animation.gif?raw=true)
