@@ -4,6 +4,8 @@ from matplotlib.animation import FuncAnimation
 import matplotlib.animation as animation
 from matplotlib import rc
 
+from mpl_toolkits.axes_grid1 import ImageGrid
+
 # define spiral
 #	has 4 prongs
 #		each prong has
@@ -25,13 +27,21 @@ prongs_list = []
 points_list = []
 centre_of_mass_list = []
 
-fig = plt.figure(figsize=(12,4))
-# fig = plt.figure(figsize=(6,4))
-axs = {}
+# fig = plt.figure(figsize=(12,4))
+fig = plt.figure(figsize=(6,4))
+
+axs = ImageGrid(fig, (0,0,1,1),
+                 nrows_ncols=(1, 4),  # creates 2x2 grid of axes
+                 axes_pad=0,  # pad between axes in inch.
+                 share_all=True
+                 )
+                 
+axs[0].get_yaxis().set_ticks([])
+axs[0].get_xaxis().set_ticks([])
+
+# axs = {}
 colors = ['C0', 'C1', 'C2', 'C3']
 for spiral in range(spiralN):
-    # axs[spiral] = fig.add_subplot(2,2,spiral+1)
-    axs[spiral] = fig.add_subplot(1,spiralN,spiral+1)
 
     for idx in range(prongN):
         line, = axs[spiral].plot([],[], color = colors[idx])
@@ -78,8 +88,6 @@ def update(frame):
         centre_of_mass[spiral].set_data([avg_x[spiral]], [avg_y[spiral]])
         
     return prongs + points + centre_of_mass
-    
-fig.tight_layout()
 
 ani = FuncAnimation(fig, update, frames=np.linspace(0,2*np.pi,num_points_in_ring), interval = animation_duration / (num_points_in_ring - 1), init_func = init_animation, blit = True)
 
