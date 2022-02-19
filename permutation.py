@@ -26,18 +26,12 @@ axs = ImageGrid(fig, (0,0,1,1),
 axs[0].get_yaxis().set_ticks([])
 axs[0].get_xaxis().set_ticks([])
 
-# axs = {}
-colors = ['C0', 'C1', 'C2', 'C3']
-
-# draw circle
-circle = plt.Circle((0, 0), radius, facecolor='none', edgecolor='black', linewidth=3)
-
 for spiral in range(spiralN):
     
     theta_zero = [0, np.pi/2, np.pi, (3*np.pi)/2]
     direction = np.asarray([[1,1,1,1], [1,1,1,-1], [1,1,-1,-1], [1,-1,1,-1]])
     
-    circle = plt.Circle((0, 0), radius, facecolor='none', edgecolor='black', linewidth=3)
+    circle = plt.Circle((0, 0), radius, facecolor='none', edgecolor='black', linewidth=1)
     axs[spiral].add_patch(circle)
     
     theta_zero = [0, np.pi/2, np.pi, (3*np.pi)/2]
@@ -51,8 +45,8 @@ for spiral in range(spiralN):
         if c > 0:
             color = 'C0'
         else:
-            color = 'C1'            
-        mass, = axs[spiral].plot(x,y,'o',markersize=15, c=color)
+            color = 'C3'            
+        mass, = axs[spiral].plot(x,y,'o',markersize=8, c=color)
     
     axs[spiral].set_xlim([-1.5,1.5])
     axs[spiral].set_ylim([-1.5,1.5])
