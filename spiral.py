@@ -28,7 +28,7 @@ points_list = []
 centre_of_mass_list = []
 
 # fig = plt.figure(figsize=(12,4))
-fig = plt.figure(figsize=(6,4))
+fig = plt.figure(figsize=(12,3))
 
 axs = ImageGrid(fig, (0,0,1,1),
                  nrows_ncols=(1, 4),  # creates 2x2 grid of axes
